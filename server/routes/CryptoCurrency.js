@@ -26,10 +26,6 @@ router.get("/TopTen", async (req, res) => {
   }
 });
 
-// routes.js
-
-// ... (Previous code)
-
 // Define a route for a specific cryptocurrency by symbol
 router.get("/:symbol", async (req, res) => {
   const symbol = req.params.symbol;
@@ -54,7 +50,7 @@ router.get("/:symbol/price", async (req, res) => {
   const symbol = req.params.symbol;
 
   try {
-    // Fetch cryptocurrency data by symbol
+    // Fetch cryptocurrency data by symbol and get price in USD
     const response = await api.get(`/quotes/latest?symbol=${symbol}`);
 
     if (response.data && response.data.data && response.data.data[symbol]) {
