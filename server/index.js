@@ -1,14 +1,11 @@
-import express from "express";
-import getTopTen from "./routes/CryptoCurrency.js";
-// import Server2Router from "./routes/Server2.js";
+const express = require("express");
 const app = express();
+const CryptoRouter = require("./routes/CryptoCurrency");
+require("dotenv").config();
 
-app.use(express.json());
 const PORT = 3000;
 
-app.use("/Crypto", getTopTen);
-
-//app.use("/Server2", Server2Router);
+app.use("/crypto", CryptoRouter);
 
 app.listen(PORT, () => {
   console.log("Server Listening on PORT:", PORT);
