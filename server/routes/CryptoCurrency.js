@@ -67,17 +67,17 @@ router.get("/:symbol", async (req, res) => {
   const symbol = req.params.symbol;
 
   try {
-    // const catchData = await redisClient.get("symbol");
-    // if (catchData) {
-    //   res.json(JSON.parse(catchData));
-    //   return;
-    // }
+    const catchData = await redisClient.get(`symbol:${symbol}`);
+    if (catchData) {
+      res.json(JSON.parse(catchData));
+      return;
+    }
     // Fetch cryptocurrency data by symbol
     const response = await api.get(`/quotes/latest?symbol=${symbol}`);
 
     if (response.data && response.data.data && response.data.data[symbol]) {
       const cryptoData = response.data.data[symbol];
-      // await redisClient.set("symbol", JSON.stringify(cryptoData));
+      await redisClient.set(`symbol:${symbol}`, JSON.stringify(cryptoData));
       res.json(cryptoData);
     } else {
       res.status(404).json({ error: "Cryptocurrency not found" });
@@ -92,11 +92,11 @@ router.get("/:symbol/price", async (req, res) => {
   const symbol = req.params.symbol;
 
   try {
-    // const catchData = await redisClient.get("price");
-    // if (catchData) {
-    //   res.json(JSON.parse(catchData));
-    //   return;
-    // }
+    const cachedPrice = await redisClient.get(`price:${symbol}`); // Use a unique key per symbol for price
+    if (cachedPrice) {
+      res.json({ priceUSD: JSON.parse(cachedPrice) });
+      return;
+    }
     // Fetch cryptocurrency data by symbol and get price in USD
     const response = await api.get(`/quotes/latest?symbol=${symbol}`);
 
@@ -108,7 +108,7 @@ router.get("/:symbol/price", async (req, res) => {
         cryptoData.quote.USD.price
       ) {
         const priceInUSD = cryptoData.quote.USD.price;
-        // await redisClient.set("price", JSON.stringify(priceInUSD));
+        await redisClient.set(`price:${symbol}`, JSON.stringify(priceInUSD));
         res.json({ priceUSD: priceInUSD });
       } else {
         res
