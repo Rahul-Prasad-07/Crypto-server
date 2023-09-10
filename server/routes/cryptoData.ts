@@ -1,47 +1,47 @@
 // import dotenv from "dotenv";
-// import redis from "redis";
-// import axios from "axios";
-// // const router = express.Router();
+import redis from "redis";
+import axios from "axios";
+// const router = express.Router();
 // dotenv.config();
 
-// const API_KEY = process.env.COINMARKETCAP_API;
-// const BASE_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency";
+const API_KEY = "e3cbef6e-746b-4f11-8c34-3ebe787cb615";
+const BASE_URL = "https://pro-api.coinmarketcap.com/v1/cryptocurrency";
 
-// let redisClient;
-// // Redis connection
-// (async () => {
-//   redisClient = redis.createClient();
-//   redisClient.on("error", (err) => console.log("redis error", err));
-//   await redisClient.connect();
-// })();
+let redisClient;
+// Redis connection
+(async () => {
+  redisClient = redis.createClient();
+  redisClient.on("error", (err) => console.log("redis error", err));
+  await redisClient.connect();
+})();
 
-// const api = axios.create({
-//   baseURL: BASE_URL,
-//   headers: {
-//     "X-CMC_PRO_API_KEY": API_KEY,
-//     Accept: "application/json",
-//   },
-// });
+const api = axios.create({
+  baseURL: BASE_URL,
+  headers: {
+    "X-CMC_PRO_API_KEY": API_KEY,
+    Accept: "application/json",
+  },
+});
 
-// const getData = async (req, res) => {
-//   try {
-//     const catchData = await redisClient.get("topTen");
-//     if (catchData) {
-//       res.json(JSON.parse(catchData));
-//       return;
-//     }
+const getData = async (req, res) => {
+  try {
+    const catchData = await redisClient.get("topTen");
+    if (catchData) {
+      res.json(JSON.parse(catchData));
+      return;
+    }
 
-//     const response = await api.get("/quotes/latest");
-//     const Data = response.data.data;
-//     await redisClient.set("topTen", JSON.stringify(Data));
-//     res.json(response.data.data);
-//   } catch (err) {
-//     console.error(err);
-//     res.status(500).json({ error: "An error occurred" });
-//   }
-// };
+    const response = await api.get("/quotes/latest");
+    const Data = response.data.data;
+    await redisClient.set("topTen", JSON.stringify(Data));
+    res.json(response.data.data);
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "An error occurred" });
+  }
+};
 
-// export default getData;
+export default getData;
 
 // const getSymbol = async (req, res) => {
 //   try {

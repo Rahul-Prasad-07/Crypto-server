@@ -1,8 +1,10 @@
-const redis = require("redis");
-const express = require("express");
-const axios = require("axios");
+import * as redis from 'redis';
+import express from "express";
+import axios from "axios";
 const router = express.Router();
-require("dotenv").config();
+import dotenv from "dotenv";
+dotenv.config();
+
 const app = express();
 
 app.use(express.json());
@@ -453,4 +455,5 @@ router.get("/:symbol/market_cap_dominance", async (req, res) => {
   }
 });
 
+export default router;
 module.exports = router;
