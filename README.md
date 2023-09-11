@@ -11,9 +11,5 @@
 
 ## Post-man collection
 
-All are GET req
-
-- http://localhost:3000/crypto/top10
-- http://localhost:3000/crypto/top20
-- http://localhost:3000/crypto/SOL
-- http://localhost:3000/crypto/SOL/price
+Added postman collection file name `Crypto-server.postman_collection.json`
+import it and use to intrect with the backend server
