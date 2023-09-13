@@ -1,4 +1,4 @@
-import * as redis from 'redis';
+import * as redis from "redis";
 import express from "express";
 import axios from "axios";
 const router = express.Router();
@@ -26,6 +26,48 @@ const api = axios.create({
     "X-CMC_PRO_API_KEY": API_KEY,
     Accept: "application/json",
   },
+});
+
+// Create an Axios instance for API requests
+const apipc = axios.create({
+  baseURL: "https://pro-api.coinmarketcap.com/v2/tools",
+  headers: {
+    "X-CMC_PRO_API_KEY": API_KEY,
+    Accept: "application/json",
+  },
+});
+
+// Define a new route to convert cryptocurrency price
+router.get("/price-convert", async (req, res) => {
+  try {
+    // Extract query parameters from the request
+    const { amount, symbol, convert } = req.query;
+
+    // Make an API request to CoinMarketCap for price conversion
+    const response = await apipc.get("/price-conversion", {
+      params: {
+        amount,
+        symbol,
+        convert,
+      },
+    });
+
+    // Check if the response is successful
+    if (response.status === 200) {
+      // Extract the converted price from the response
+      //@ts-ignore
+      const convertedPrice = response.data.data[0].quote[convert].price;
+
+      // Send the converted price as a JSON response
+      res.json({ convertedPrice });
+    } else {
+      // Handle API error response
+      res.status(response.status).json({ error: response.data.error.message });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: "An error occurred" });
+  }
 });
 
 router.get("/top20", async (req, res) => {
