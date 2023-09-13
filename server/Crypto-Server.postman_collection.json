@@ -86,6 +86,214 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "volume_24",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/SOL/volume_24h",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"SOL",
+						"volume_24h"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "volume_change_24h",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/ETH/volume_change_24h",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"ETH",
+						"volume_change_24h"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "percent_change_1h",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/SOL/percent_change_1h",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"SOL",
+						"percent_change_1h"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "percent_change_24h",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/ETH/percent_change_24h",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"ETH",
+						"percent_change_24h"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "percent_change_7d",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/LINK/percent_change_7d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"LINK",
+						"percent_change_7d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "percent_change_30d",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/ADA/percent_change_30d",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"ADA",
+						"percent_change_30d"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "market_cap",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/ETH/market_cap",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"ETH",
+						"market_cap"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "market_cap_dominance",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/crypto/ADA/market_cap_dominance",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"crypto",
+						"ADA",
+						"market_cap_dominance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "convert",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-CMC_PRO_API_KEY",
+						"value": "e3cbef6e-746b-4f11-8c34-3ebe787cb615",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:3000/Crypto/price-convert?amount=1&symbol=LINK&convert=INR",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"Crypto",
+						"price-convert"
+					],
+					"query": [
+						{
+							"key": "amount",
+							"value": "1"
+						},
+						{
+							"key": "symbol",
+							"value": "LINK"
+						},
+						{
+							"key": "convert",
+							"value": "INR"
+						}
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
