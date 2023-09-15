@@ -1,5 +1,13 @@
 {
-  "watch": ["src"],
+  "watch": [
+    "src",
+    "routes",
+    "middleware",
+    "controller",
+    "config",
+    "app.ts",
+    "index.ts"
+  ],
   "ext": ".ts,.js",
   "exec": "ts-node ./src/index.ts"
 }
